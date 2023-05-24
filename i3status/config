@@ -1,0 +1,53 @@
+general {
+        colors = true
+        color_good = "#a3be8c"
+        color_degraded = "#ebcb8b"
+        color_bad = "#bf616a"
+        interval = 1
+        separator = "|"
+}
+
+order += "wireless wlan0"
+order += "run_watch VPN"
+order += "battery all" 
+order += "disk /"
+order += "memory"
+order += "volume master"
+order += "tztime local"
+
+wireless wlan0 {
+  format_up = "%essid %quality %ip"
+}
+
+run_watch VPN {
+	pidfile = "  : /var/run/vpnc/pid "
+}
+
+battery all {
+        format = " %status %percentage %remaining"
+        format_down = " No battery"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+disk "/" {
+  format = " %avail "  
+}
+
+volume master {
+	format = " ♪: %volume " 
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+}
+
+tztime local {
+        format = " %Y-%m-%d %H:%M:%S "
+}
+
+memory {
+        format = " %used : %available "
+        threshold_degraded = "0.5G"
+        format_degraded = "MEMORY < %available"
+}
+
