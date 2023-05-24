@@ -15,6 +15,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
+" Clear terminal on exit
+au VimLeave * :!clear
+
 " Turn on syntax highlighting
 syntax on
 
